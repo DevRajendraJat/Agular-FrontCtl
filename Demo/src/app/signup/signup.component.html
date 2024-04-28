@@ -1,0 +1,31 @@
+<app-navbar></app-navbar>
+<div align="center">
+    <h2 style="color: navy">User Registration</h2>
+<div *ngIf="form.message != null"> {{form.message}}</div>
+<table>
+    <tr>
+        <th>FirstName: </th>
+        <td><input type="text" [(ngModel)]="form.data.firstName" name="firstName" /> </td>
+    </tr>
+    <tr>
+        <th>LastName: </th>
+        <td><input type="text" [(ngModel)]="form.data.lastName" name="lastName" /> </td>
+    </tr>
+    <tr>
+        <th>LoginId: </th>
+        <td><input type="text" [(ngModel)]="form.data.loginId" name="loginId" /></td>
+    </tr>
+    <tr>
+        <th>Password: </th>
+        <td><input type="text" [(ngModel)]="form.data.password" name="password" /></td>
+    </tr>
+    <tr>
+        <th>DOB: </th>
+        <td><input type="date" [(ngModel)]="form.data.dob" name="dob" /> </td>
+    </tr>
+    <tr>
+        <th></th>
+        <td><button (click)="signUp()">signUp</button> </td>
+    </tr>
+</table>
+</div>

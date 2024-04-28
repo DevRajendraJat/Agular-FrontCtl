@@ -1,0 +1,70 @@
+<app-navbar></app-navbar>
+<div align="center">
+<table border="1">
+    <tr> <th>FirstName :</th>
+        <td><input type="text" placeholder="Enter FirstName" [(ngModel)]="form.searchParams.firstName" /> 
+        </td>
+        <th>LastName :</th>
+        <td><input type="text" placeholder="Enter lastName" [(ngModel)]="form.searchParams.lastName" /> 
+        </td>
+        <th>Passsword:</th>
+        <td><input type="text" placeholder="Enter password" [(ngModel)]="form.searchParams.password" /> 
+        </td>
+        <td><input type="date" name="dob" [(ngModel)]="form.searchParams.dob" /> </td>
+        <td> <select name="roleId" [(ngModel)]="form.searchParams.roleId">
+                <option [ngValue]="" value="undefined">{{'------Select User-------' }}</option>
+                <option *ngFor="let obj of form.preload.roleList" [value]="obj.key">{{obj.value}}</option>
+            </select></td>
+        <td> <button (click)="search()">search</button></td>
+
+    </tr>
+    <tr></tr>
+    <tr>
+        <th>Select</th>
+        <th>ID</th>
+        <th>Image</th>
+        <th>FirstName</th>
+        <th>LastName</th>
+        <th>LoginId</th>
+        <th>Password</th>
+        <th>DOB</th>
+        <th>Role</th>
+        <th>Edit</th>
+    </tr>
+    <tr *ngFor="let m of form.list;let i = index">
+        <td style="text-align: center;">
+            <input type="checkbox" (change)="onCheckboxChange(m.id)" />
+        </td>
+
+        <td>{{(form.pageNo*5)+i+ 1}}</td>
+        <td> <img src="http://localhost:8080/User/profilePic/{{m.id}}" height="55px" width="80px"></td>
+        <td>{{m.firstName}}</td>
+        <td>{{m.lastName}}</td>
+        <td>{{m.loginId}}</td>
+        <td>{{m.password}}</td>
+        <td>{{m.dob}}</td>
+        <td>{{m.roleName}}</td>
+        <td> <a (click)="edit( '/user/' +  m.id)" style="color: blue;">edit
+        </a></td>
+    </tr>
+</table>
+<table>
+    <tr>
+        <td><button [disabled]="form.pageNo == 0" (click)="previous()">previous</button></td>
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+       &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+       &nbsp; &nbsp;&nbsp; &nbsp; &nbsp;
+        <td><button (click)="delete()">delete</button></td>
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
+        &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+       &nbsp;
+                <td><button [disabled]="form.list.length < 5" (click)="next()">next</button></td>
+    </tr>
+</table>
+</div>
